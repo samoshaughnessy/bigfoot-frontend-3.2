@@ -1,7 +1,8 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import SightingListPreview from "./Components/SightingListPreview.jsx";
+import NewSightingForm from "./Components/NewSightingForm.jsx";
 import Sighting from "./Components/Sighting.jsx";
+import Home from "./Components/Home.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
@@ -19,7 +20,9 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* Route that renders home content */}
-      <Route index element={<SightingListPreview />} />
+      <Route index element={<Home />} />
+
+      <Route path="new" element={<NewSightingForm />} />
       {/* Route that renders individual sightings */}
       <Route path="sightings/:sightingId" element={<Sighting />} />
       {/* Route that matches all other paths */}

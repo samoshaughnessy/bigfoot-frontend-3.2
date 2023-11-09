@@ -6,28 +6,24 @@ import Card from "react-bootstrap/Card";
 import { BACKEND_URL } from "../constants.jsx";
 
 const Sighting = () => {
-  const [sightingIndex, setSightingIndex] = useState();
-  const [sighting, setSighting] = useState({});
+  const [sightingId, setSightingId] = useState();
+  const [sighting, setSighting] = useState();
 
   useEffect(() => {
-    // If there is a sightingIndex, retrieve the sighting data
-    if (sightingIndex) {
-      console.log("getting data");
-      axios
-        .get(`${BACKEND_URL}/sightings/${sightingIndex}`)
-        .then((response) => {
-          console.log(response);
-          setSighting(response.data);
-        });
+    // If there is a sightingId, retrieve the sighting data
+    if (sightingId) {
+      axios.get(`${BACKEND_URL}/sightings/${sightingId}`).then((response) => {
+        console.log(response);
+        setSighting(response.data);
+      });
     }
-    // Only run this effect on change to sightingIndex
-  }, [sightingIndex]);
+    // Only run this effect on change to sightingId
+  }, [sightingId]);
 
-  // Update sighting index in state if needed to trigger data retrieval
+  // Update sighting ID in state if needed to trigger data retrieval
   const params = useParams();
-  if (sightingIndex !== params.sightingId) {
-    console.log("setting params");
-    setSightingIndex(params.sightingId);
+  if (sightingId !== params.sightingId) {
+    setSightingId(params.sightingId);
   }
 
   // Store a new JSX element for each property in sighting details
@@ -44,13 +40,7 @@ const Sighting = () => {
     <div>
       <Link to="/">Home</Link>
       <Card bg="light">
-        <Card.Body>
-          <Card.Title>
-            {sighting &&
-              `${sighting.YEAR} ${sighting.SEASON} ${sighting.MONTH}`}
-          </Card.Title>
-          {sightingDetails}
-        </Card.Body>
+        <Card.Body>{sightingDetails}</Card.Body>
       </Card>
     </div>
   );
