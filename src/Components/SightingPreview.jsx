@@ -1,6 +1,8 @@
 import Card from "react-bootstrap/Card";
 
 const SightingPreview = (props) => {
+  console.log(props);
+  const categoryNames = props.data.categories.map((category) => category.name);
   return (
     <Card bg="light">
       <Card.Body>
@@ -8,6 +10,9 @@ const SightingPreview = (props) => {
           {`${new Date(props.data.date).toDateString()} 
           | ${props.data.location}`}
         </Card.Title>
+        {categoryNames.length > 0 && (
+          <Card.Text>Categories: {categoryNames.join(", ")}</Card.Text>
+        )}
       </Card.Body>
     </Card>
   );

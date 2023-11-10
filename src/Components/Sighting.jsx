@@ -40,9 +40,19 @@ const Sighting = () => {
   const sightingDetails = [];
   if (sighting) {
     for (const key in sighting) {
-      sightingDetails.push(
-        <Card.Text key={key}>{`${key}: ${sighting[key]}`}</Card.Text>
-      );
+      if (key == "categories") {
+        sighting.categories.forEach((category) => {
+          sightingDetails.push(
+            <Card.Text
+              key={category.id}
+            >{`category: ${category.name}`}</Card.Text>
+          );
+        });
+      } else {
+        sightingDetails.push(
+          <Card.Text key={key}>{`${key}: ${sighting[key]}`}</Card.Text>
+        );
+      }
     }
   }
 
