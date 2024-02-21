@@ -9,6 +9,7 @@ function App() {
         <img src={logo} className="logo react" alt="React logo" />
       </div>
       <h1>Bigfoot Frontend </h1>
+      <h1>Added with CircleCi</h1>
       <Outlet />
     </div>
   );
